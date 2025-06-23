@@ -1,0 +1,7 @@
+[project]
+name = "genes-protocol"
+version = "0.1.0"
+description = "Genetic associations between cancer and other health conditions"
+readme = "README.md"
+requires-python = ">=3.12"
+dependencies = []
