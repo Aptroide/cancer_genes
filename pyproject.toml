@@ -4,4 +4,18 @@ version = "0.1.0"
 description = "Genetic associations between cancer and other health conditions"
 readme = "README.md"
 requires-python = ">=3.12"
-dependencies = []
+dependencies = [
+    "bravado>=12.0.1",
+    "catboost>=1.2.8",
+    "kaleido>=1.0.0",
+    "lightgbm>=4.6.0",
+    "matplotlib>=3.10.3",
+    "optuna>=4.4.0",
+    "pandas>=2.3.0",
+    "plotly>=6.1.2",
+    "rich>=14.0.0",
+    "scikit-learn>=1.7.0",
+    "tensorflow>=2.19.0",
+    "umap-learn>=0.5.7",
+    "xgboost>=3.0.2",
+]
