@@ -1,6 +1,6 @@
 services:
   main:
-    image: aptroide/genes_protocol-main:V2.1
+    image: aptroide/genes_protocol-main:V2.3
     ports:
       - 8000:8000
     volumes:
