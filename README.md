@@ -6,7 +6,7 @@ This project analyzes genetic associations between cancer and other health condi
 
 ## Prerequisites
 
-- Python 3.11.X
+- Python 3.12.X
 - Docker and Docker Compose (optional, for containerized execution)
 - Internet connection (for cBioPortal API access)
 
@@ -21,8 +21,8 @@ This project analyzes genetic associations between cancer and other health condi
 
 2. **Clone the repository**:
    ```bash
-   git clone https://github.com/Aptroide/cancer_gene
-   cd cancer_gene
+   git clone https://github.com/Aptroide/cancer_genes
+   cd cancer_genes
    ```
 
 3. **Initialize and install dependencies with uv**:
@@ -97,7 +97,7 @@ Ensure Docker and Docker Compose are installed on your system. For installation 
 
 1. Download the docker-compose.yml file:
    ```bash
-   curl -O https://raw.githubusercontent.com/Aptroide/cancer_gene/main/docker-compose.yml
+   curl -O https://raw.githubusercontent.com/Aptroide/cancer_genes/main/docker-compose.yml
    ```
 
 2. Create the required directories and files:
