@@ -1,9 +1,9 @@
 {
-    "file_path": "Data/alzheimer_freq.csv",
+    "file_path": "Data/<Condition Frequencies File.csv>",
     "studies_path": "Data/study_ids.txt",
     "output_path": "Results",
     "num_cancer_studies": 500,
     "num_genes_per_study": null,
-    "your_study_name": "alzheimer",
+    "your_study_name": "<Condition Name>",
     "classification": false
 }
