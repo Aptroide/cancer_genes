@@ -6,13 +6,18 @@ This project analyzes genetic associations between cancer and other health condi
 
 ## Prerequisites
 
-- Python 3.12.X
+- Python 3.11.X
 - Docker and Docker Compose (optional, for containerized execution)
 - Internet connection (for cBioPortal API access)
 
-## Installation
+---
 
-### Option 1: Python Environment with uv
+## Manual Installation
+
+<details>
+<summary>For Linux and WSL</summary>
+
+#### Python Environment with uv
 
 1. **Install uv** (Python package manager):
    ```bash
@@ -21,8 +26,8 @@ This project analyzes genetic associations between cancer and other health condi
 
 2. **Clone the repository**:
    ```bash
-   git clone https://github.com/Aptroide/cancer_genes
-   cd cancer_genes
+   git clone https://github.com/Aptroide/cancer_gene
+   cd cancer_gene
    ```
 
 3. **Initialize and install dependencies with uv**:
@@ -75,7 +80,7 @@ This project analyzes genetic associations between cancer and other health condi
    # Run with uv (automatically uses the virtual environment)
    uv run main.py
    ```
-   
+
    **Alternative**: If you prefer to suppress GPU warnings:
    - Linux and macOS:
    ```bash
@@ -91,13 +96,95 @@ This project analyzes genetic associations between cancer and other health condi
 - All dependencies are locked for reproducible installations
 - Chrome is required for generating static plots with plotly/kaleido
 
-### Option 2: Docker Deployment
+</details>
+
+<details>
+<summary>For Windows</summary>
+
+
+#### If you're on Windows (without WSL), use the following adaptations:
+
+1. Verify Python & pip:
+   ```powershell
+   python --version
+   pip --version
+   ```
+   If Python isn't found, install the latest 3.12.x from https://www.python.org/downloads/ and be sure to check "Add Python to PATH" during setup.
+
+2. Install uv (user scope):
+   ```powershell
+   pip install --user uv
+   # Ensure Scripts folder is on PATH (usually %USERPROFILE%\AppData\Roaming\Python\Python312\Scripts)
+   ```
+
+3. Clone repo (PowerShell):
+   ```powershell
+   git clone https://github.com/Aptroide/cancer_gene
+   Set-Location cancer_gene
+   ```
+
+4. Create folders:
+   ```powershell
+   mkdir Data,Results
+   ```
+
+5. Create config file (PowerShell here-string):
+   ```powershell
+   @'
+   {
+       "file_path": "Data/your_condition_file.csv",
+       "studies_path": null,
+       "output_path": "Results",
+       "num_cancer_studies": 10,
+       "num_genes_per_study": null,
+       "your_study_name": "Your_Condition",
+       "classification": false
+   }
+   '@ | Out-File -Encoding UTF8 Data/config.json
+   ```
+
+6. Prepare input CSV:
+   ```powershell
+   @"Gene,Frequency
+   APP,0.45
+   PSEN1,0.32
+   PSEN2,0.28
+   "@ | Out-File -Encoding UTF8 Data/your_condition_file.csv
+   ```
+
+7. Install deps & lock env:
+   ```powershell
+   uv sync
+   ```
+
+8. Install Chrome for Plotly (respond with y if prompted):
+   ```powershell
+   uv run plotly_get_chrome
+   ```
+
+9. Run:
+   ```powershell
+   uv run main.py
+   # Suppress stderr warnings
+   uv run main.py 2>$null
+   ```
+
+Optional (recommended): Use Windows Subsystem for Linux (WSL2) for closer parity with the Docker/Linux runtime.
+
+</details>
+
+## Docker Usage
+
+<details>
+<summary>Docker Setup</summary>
+
+#### Using the Ready-to-Use Docker Container
 
 Ensure Docker and Docker Compose are installed on your system. For installation instructions, visit the [Docker Desktop Documentation](https://docs.docker.com/desktop/).
 
 1. Download the docker-compose.yml file:
    ```bash
-   curl -O https://raw.githubusercontent.com/Aptroide/cancer_genes/main/docker-compose.yml
+   curl -O https://raw.githubusercontent.com/Aptroide/cancer_gene/main/docker-compose.yml
    ```
 
 2. Create the required directories and files:
@@ -134,6 +221,10 @@ Ensure Docker and Docker Compose are installed on your system. For installation 
    ```bash
    docker-compose up
    ```
+
+</details>
+
+---
 
 ## Configuration
 
@@ -188,6 +279,9 @@ Configure the analysis parameters in the `Data/config.json` file:
      ...
      ```
 
+
+ ---
+
 ## Results
 
 ### Output Files
@@ -212,6 +306,8 @@ Clustering visualizations are saved to the `Results/Figures` directory in PNG fo
 
 **Note:** `<method>` can be: `kpca`, `tsne`, or `umap`.
 
+---
+
 ## Troubleshooting
 
 1. **API Connection Issues**: 
@@ -225,6 +321,8 @@ Clustering visualizations are saved to the `Results/Figures` directory in PNG fo
 3. **Docker Issues**:
    - Verify that the Docker service is running
    - Ensure required ports are available (port 8000 is used by default)
+
+---
 
 ## References
 
