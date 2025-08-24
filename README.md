@@ -6,7 +6,7 @@ This project analyzes genetic associations between cancer and other health condi
 
 ## Prerequisites
 
-- Python 3.11.X
+- Python 3.12.X
 - Docker and Docker Compose (optional, for containerized execution)
 - Internet connection (for cBioPortal API access)
 
